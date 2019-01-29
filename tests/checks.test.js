@@ -83,9 +83,10 @@ describe('mooc_git-entrega1_merge', function () {
                 error_critical = this.msg_err;
                 should.not.exist(error_critical);
             }
+            files_commit_1_master = output;
             this.msg_ok = `Found the file '${expected}' in the master branch commit ${commit_1_master}`;
             this.msg_err = `File '${expected}' not found in the master branch commit ${commit_1_master}`;
-            Utils.search(expected, output).should.be.equal(true);
+            Utils.search(expected, files_commit_1_master).should.be.equal(true);
         }
     });
 
@@ -191,6 +192,7 @@ describe('mooc_git-entrega1_merge', function () {
             this.msg_err = error_critical;
             should.not.exist(error_critical);
         } else {
+            commit_head_sine = branches.branches[BRANCH_NAME].commit;
             let output;
             this.msg_ok = `Found '${expected}' in master merge commit ${commit_head_sine} contents`;
             this.msg_err = `'${expected}' not found in final master merge commit ${commit_head_sine} contents`;
